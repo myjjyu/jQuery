@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>jQuery</title>
+</head>
+<body>    
+    <form id="myform">
+        <h3>주민번호를 입력하세요</h3>
+        <input type='text' name='jumin1' id='jumin1' />
+        - 
+        <input type='password' name='jumin2' id='jumin2' />
+    </form>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            /** 포커스가 들어간 경우 배경색상 변경 */
+            $("#jumin1, #jumin2").focus(function() {
+                $(this).css('background-color', '#ff0');
+            }); // end focus event
+
+            /** 포커스가 빠져나온경우 배경색상 변경 */
+            $("#jumin1, #jumin2").blur(function() {
+                $(this).css('background-color', '#fff');
+            }); // end blur event
+
+            /** 키 이벤트 설정 */
+            $("#jumin1").keyup(function() {
+                var value = $(this).val();              // 입력값을 가져온다.
+                if (value.length >= 6) {                // 글자수가 6자 이상이 되면?
+                    var input = value.substring(0, 6);  // 6자만 남겨놓고 자른다.
+                    $(this).val(input);                 // 잘라낸 값을 다시 설정한다.
+                    $("#jumin2").focus();               // 포커스 이동
+                } // end if
+            }); // end keyup event
+        });
+    </script>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>jQuery</title>
+</head>
+<body>    
+    <select name="site" id="site">
+        <option value="">--- 선택하세요 ---</option>
+        <option value="http://www.naver.com">네이버</option>
+        <option value="http://www.daum.net">다음</option>
+        <option value="http://www.google.com">구글</option>
+    </select>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#site").change(function() {
+                var url = $(this).val();    // 드롭다운의 선택값을 가져온다.
+                if (url != "") {            // 가져온 값이 존재한다면?
+                    window.open(url);       // 해당 값을 새 창(탭)으로 띄운다.
+                }
+            }); // end change event
+        });
+    </script>
+</body>
+
+</html>
+
+
+

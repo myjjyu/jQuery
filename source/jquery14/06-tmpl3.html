@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <style>
+        /* 목록 스타일 */
+        .list-group {
+            border: 1px solid #eee;  border-radius: 3px;
+            list-style: none;           padding: 0;            margin: 0;
+        }
+
+        /* 목록의 각 항목 스타일 */
+        .list-group-item {
+            font-family: '나눔고딕','맑은고딕','Helvetica','굴림';
+            display: block;                     padding: 12px 10px 10px 10px;
+            border-bottom: 1px solid #eee;   color: #222;
+            text-decoration: none;
+        }
+
+        /* 목록의 마지막 요소에 대한 아래 테두리 제거 */
+        .list-group-item:last-child { border-bottom: 0; }
+
+        /* 목록 내의 텍스트 요소 여백, 글자 크기 설정 */
+        .list-group-item-heading { padding: 0; margin: 0 0 5px 0; font-size: 16px; }
+        .list-group-item-text { padding: 0; margin: 0; font-size: 12px; }
+    </style>
+</head>
+
+<body>
+    <!-- 플러그인에 의하여 동적으로 생성될 내용이 추가될 요소 -->
+    <div class="list-group" id="list"></div>
+    <button id="btn">더 보기</button>
+
+    <!-- 동적으로 생성될 HTML의 기본 틀 -->
+    <script type="text/x-handlebars-template" id="list-item-tmpl">
+        {{#speak.data}} 
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">{{eng}}</h4>
+            <p class="list-group-item-text">{{kor}}</p>
+        </a>
+        {{/speak.data}}
+    </script>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="plugins/handlebars/handlebars-v4.7.6.js"></script>
+    <!-- JSON 데이터가 정의된 script 파일 참조 -->
+    <script src="data.js"></script>
+    <script>
+        $(function() {
+            $("#btn").click(function() {
+                // 미리 준비한 HTML틀을 읽어온다.
+                var template = Handlebars.compile($("#list-item-tmpl").html());
+                var html = template(content);
+                // #list에 읽어온 내용을 추가한다.
+                $("#list").append(html);
+            });
+        });
+    </script>
+</body>
+
+</html>

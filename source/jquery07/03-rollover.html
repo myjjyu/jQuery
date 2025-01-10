@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>jQuery</title>
+    <style>
+        /* 전체 여백 제거 */
+        *  { margin: 0; padding: 0; }
+
+        /* 목록정의 태그 */
+        ul { list-style: none; }
+
+        /* float 처리용 클래스 및 마감제 클래스 정의 */
+        .pull-left { float: left; }
+        .clearfix:after { display: block; content: ''; clear: both; float: none; }
+    </style>
+</head>
+
+<body>
+    <ul id="clearfix" class="menu">
+        <li class="pull-left">
+            <a href="#"><img class="item" src="img/jquery.jpg" data-over="img/jquery_on.jpg" /></a>
+        </li>
+        <li class="pull-left">
+            <a href="#"><img class="item" src="img/javascript.jpg" data-over="img/javascript_on.jpg" /></a>
+        </li>
+        <li class="pull-left">
+            <a href="#"><img class="item" src="img/css.jpg" data-over="img/css_on.jpg" /></a>
+        </li>
+        <li class="pull-left">
+            <a href="#"><img class="item" src="img/html.jpg" data-over="img/html_on.jpg" /></a>
+        </li>
+    </ul>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".item").hover(function() {
+                var tmp = $(this).attr('src');
+                var over = $(this).data('over');
+                $(this).attr('src', over);
+                $(this).data('over', tmp);
+            });
+        });
+    </script>
+</body>
+
+</html>

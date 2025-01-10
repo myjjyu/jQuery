@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>jquery plugin</title>
+    <!-- 플러그인 CSS 참조 -->
+    <link rel="stylesheet" href="plugins/lightbox/css/lightbox.min.css" />
+</head>
+
+<body>
+    <h1>Single</h1>
+    <div>
+        <!-- data-lightbox의 값이 모든 링크마다 서로 다를 경우 개별적으로 동작함. -->
+        <a href="img/photo1.jpg" data-lightbox="myphoto-1" data-title="내 첫 번째 사진">
+            <img src="img/photo1.jpg" width="100" height="70" /></a>
+        <a href="img/photo2.jpg" data-lightbox="myphoto-2" data-title="내 두 번째 사진">
+            <img src="img/photo2.jpg" width="100" height="70" /></a>
+        <a href="img/photo3.jpg" data-lightbox="myphoto-3" data-title="내 세 번째 사진">
+            <img src="img/photo3.jpg" width="100" height="70" /></a>
+    </div>
+    <h1>Multi</h1>
+    <div>
+        <!-- data-lightbox의 값이 모든 링크가 동일할 경우 하나의 갤러리로 동작함. -->
+        <a href="img/bg1.jpg" data-lightbox="my-gallery" data-title="내 첫 번째 갤러리">
+            <img src="img/bg1.jpg" width="100" height="70" /></a>
+        <a href="img/bg2.jpg" data-lightbox="my-gallery" data-title="내 두 번째 갤러리">
+            <img src="img/bg2.jpg" width="100" height="70" /></a>
+        <a href="img/bg3.jpg" data-lightbox="my-gallery" data-title="내 세 번째 갤러리">
+            <img src="img/bg3.jpg" width="100" height="70" /></a>
+        <a href="img/bg4.jpg" data-lightbox="my-gallery" data-title="내 네 번째 갤러리">
+            <img src="img/bg4.jpg" width="100" height="70" /></a>
+        <a href="img/bg5.jpg" data-lightbox="my-gallery" data-title="내 다섯 번째 갤러리">
+            <img src="img/bg5.jpg" width="100" height="70" /></a>
+        <a href="img/bg6.jpg" data-lightbox="my-gallery" data-title="내 여섯 번째 갤러리">
+            <img src="img/bg6.jpg" width="100" height="70" /></a>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- 플러그인 JS 참조 -->
+    <script src="plugins/lightbox/js/lightbox.min.js"></script>
+</body>
+
+</html>
+
+

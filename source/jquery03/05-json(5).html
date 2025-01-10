@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>jQuery</title>
+</head>
+
+<body>
+    <h1 id="title"></h1>
+    <p id="description"></p>
+    <p>총 게시물 수: <span id="total"></span></p>
+    <table width="800" border="1">
+        <thead>
+            <tr>
+                <th align="center">번호</th>
+                <th align="center">제목</th>
+                <th align="center">조회수</th>
+                <th align="center">작성일</th>
+            </tr>
+        </thead>
+        <tbody id="list">
+        </tbody>
+    </table>
+    
+    <!-- jQuery Script CND방식 참조 -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        /** 게시판의 정보를 표현하기 위한 JSON 데이터 정의 */
+        // 블록{} 밖에서 정의된 변수나 객체는 블록{} 안에서 인식할 수 있다.
+        var bbs = {
+            title: "Javascript + jQuery + Ajax 완벽가이드",
+            description: "Javascript 강의노트 입니다.",
+            total: 4,
+            item: [
+                { no: 4, subject: "4강-함수",          hit: 3,  date: "2018.02.27" },
+                { no: 3, subject: "3강-반복문",        hit: 6,  date: "2018.03.08" },
+                { no: 2, subject: "2강-조건문",        hit: 15, date: "2018.03.07" },
+                { no: 1, subject: "1강-변수와 연산자", hit: 19, date: "2018.03.05" }
+            ]
+        };
+
+        $(function() {
+            $("#title").html(bbs.title);
+            $("#description").html(bbs.description);
+            $("#total").html(bbs.total);
+
+            // 배열로 표현되는 게시물 정보에 대한 출력 HTML 생성
+            var mytag = "";
+
+            for (var i = 0; i < bbs.item.length; i++) {
+                mytag += "<tr>";
+                mytag += "<td>" + bbs.item[i].no + "</td>";
+                mytag += "<td>" + bbs.item[i].subject + "</td>";
+                mytag += "<td>" + bbs.item[i].hit + "</td>";
+                mytag += "<td>" + bbs.item[i].date + "</td>";
+                mytag += "</tr>"
+            }
+
+            $("#list").html(mytag);
+        });
+    </script>
+</body>
+
+</html>
+

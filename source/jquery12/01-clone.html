@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <style type="text/css">
+        .item { border: 1px dotted #ff6600; margin: 10px auto; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <button id="btn1">요소 복사하기</button>
+    <button id="btn2">초기화</button>
+    
+    <div id="box">
+        <div id='obj' class='item'>Hello World</div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $("#btn1").click(function() {
+            // 현재 시각의 timestamp
+            var time = (new Date()).getTime(); 
+            
+            // 복제될 요소의 id값 만들기
+            var id = 'copy_' + time;
+            
+            // `#obj`를 복제한다.
+            var copy = $("#obj").clone();
+            
+            // 요소를 복제할 경우 id값까지 동일해지므로 id값은 새로운 값으로 변경해야 한다.
+            copy.attr('id', id);
+
+            // 복제된 요소를 `#box`에 추가한다.
+            $("#box").append(copy);
+        });
+
+        $("#btn2").click(function() {
+            // 첫 번째 요소를 남겨두고 삭제한다.
+            $(".item").not("#obj").remove();
+        });
+    </script>
+
+</body>
+</html>

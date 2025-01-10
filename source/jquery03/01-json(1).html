@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>jQuery</title>
+</head>
+
+<body>
+    <div id="console"></div>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+	    // json 데이터 구성
+	    var student = {
+	        name: "jQuery학생",
+	        age: 19,
+	        height: "175cm",
+	    };
+
+	    // 화면에 표시할 HTML 태그 구성하기
+	    var mytag = "<h1>" + student.name + "</h1>";
+	    mytag += "<h2>" + student.age + "</h2>";
+	    mytag += "<h2>" + student.height + "</h2>";
+
+	    // #console 요소에 구성한 태그 출력하기
+	    $("#console").html(mytag);
+	});
+    </script>
+</body>
+
+</html>
