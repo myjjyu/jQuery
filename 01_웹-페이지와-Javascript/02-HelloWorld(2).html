@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+  <script>
+    /**
+     * jQuery의 메인
+     * 
+     * $() 함수에 전달되는 콜백은 웹 브라우저가 HTML을 로드한 이후에 호출된다
+     * 
+     * <body>가 종료 되기 직저에 기술되는 코드의 경우 메인 없이 기술해도 작동하는데 무리가 없다
+     */
+    // $(function(){
+    $(() => {
+      const foo = $('#foo');
+      foo.html('Hello World');
+    })
+  </script>
+</head>
+<body>
+  <h1 id="foo"></h1>
+</body>
+</html>

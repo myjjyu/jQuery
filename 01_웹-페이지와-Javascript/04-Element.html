@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 class="mycls"></h2>
+    <h2 class="mycls"></h2>
+    <p></p>
+    <p></p>
+
+    <!-- 자바스크립트 블록은 바디태그 종료 직전에 위치 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+    <script>
+      // tag이름으로 접근하는 경우
+      const eI1 = $("p");
+      eI1.html("P태크 영역");
+
+      // class 이름으로 접근하는 경우
+      const eI2 = $(".mycls");
+      eI2.html("mycls 영역");
+
+    </script>
+  </body>
+</html>
