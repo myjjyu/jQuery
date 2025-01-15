@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      .menu-container {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+
+        a {
+          display: block;
+          width: 179px;
+          height: 48px;
+          background: url(./img/btn.png);
+          line-height: 48px;
+          text-align: center;
+          font-weight: bold;
+          color: #cfdfb5;
+          text-decoration: none;
+
+          &:hover {
+            background: url(./img/btn_over.png);
+          }
+        }
+
+        .menu-item {
+          flex: 0 0;
+          position: relative;
+
+          .sub {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            z-index: 1000;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 180ms ease-out;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="menu-container">
+      <li class="menu-item">
+        <a href="#">Frontend</a>
+        <ul class="sub">
+          <li><a href="#">html + css</a></li>
+          <li><a href="#">javascript</a></li>
+          <li><a href="#">jquery</a></li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="#">Backend</a>
+        <ul class="sub">
+          <li><a href="#">php</a></li>
+          <li><a href="#">jsp</a></li>
+          <li><a href="#">node.js</a></li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <a href="#">Mobile</a>
+        <ul class="sub">
+          <li><a href="#">ios</a></li>
+          <li><a href="#">adnroid</a></li>
+          <li><a href="#">hybrid</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h1>Hello World</h1>
+
+    <script>
+      document.querySelectorAll(".menu-item").forEach((v, i) => {
+        v.addEventListener("mouseover", (e) => {
+          const current = e.currentTarget;
+          const sub = current.querySelector(".sub");
+          sub.style.maxHeight = sub.scrollHeight + "px";
+        });
+
+        v.addEventListener("mouseout", (e) => {
+          const current = e.currentTarget;
+          const sub = current.querySelector(".sub");
+          sub.style.maxHeight = "0px";
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+  </head>
+  <body>
+    <form id="myform" action="https://www.megastudy.net/" target="_blank">
+      <div>
+        <label for="username">사용자 이름</label>
+        <input type="text" name="username" id="username" />
+      </div>
+      <div>
+        <label for="userpass">비밀번호</label>
+        <input type="password" name="userpass" id="userpass" />
+      </div>
+      <button type="submit" id="btn">입력값 확인</button>
+
+      <hr />
+
+      <div id="result"></div>
+    </form>
+
+    <script type="text/javascript">
+      const myform = document.querySelector("#myform");
+
+      myform.addEventListener("submit", (e) => {
+        e.preventDefault(); // 입력하기도전에 백엔드에 전송되기때문에 처음에는 이벤트반응이 일어나면 안된다. 다~ 작성후 마지막에 강제전송시켜줘야함
+
+        const username = document.querySelector("#username");
+        const userpass = document.querySelector("#userpass");
+
+        if (!username.value) {
+          alert("사용자 이름을 입력하세요");
+          username.focus;
+          return;
+        }
+
+        if (!userpass.value) {
+          alert("비밀번호를 입력하세요");
+          userpass.focus;
+          return;
+        }
+
+        document.querySelector("#result").innerHTML =
+          "사용자 이름 :" +
+          username.value +
+          "<br/>비밀번호 : " +
+          userpass.value;
+
+        //중단시켜놓은 form의 원래 기능을 무시하고 강제 전송
+        //e.currentTarget.submit();
+      });
+    </script>
+  </body>
+</html>

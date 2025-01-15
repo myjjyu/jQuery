@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .tab-button-group {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        display: flex;
+      }
+
+      .tab-button {
+        display: block;
+        background-color: inherit;
+        min-width: 100px;
+        box-sizing: border-box;
+        border: none;
+        outline: none;
+        padding: 14px 16px;
+        font-size: 17px;
+        color: #222;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .tab-button:hover {
+        background-color: #ddd;
+      }
+
+      .tab-button.active {
+        background-color: #ccc;
+      }
+
+      .tab-page {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .tab-page.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tab-container">
+      <div class="tab-button-group">
+        <a class="tab-button active" href="#newyork">New York</a>
+        <a class="tab-button" href="#london">London</a>
+        <a class="tab-button" href="#paris">Paris</a>
+        <a class="tab-button" href="#seoul">Seoul</a>
+      </div>
+
+      <div id="newyork" class="tab-page active">
+        <h3>New York</h3>
+        <p>New York is a major city in the US.</p>
+      </div>
+
+      <div id="london" class="tab-page">
+        <h3>London</h3>
+        <p>London is the capital of England.</p>
+      </div>
+
+      <div id="paris" class="tab-page">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p>
+      </div>
+
+      <div id="seoul" class="tab-page">
+        <h3>Seoul</h3>
+        <p>Seoul is the capital of South Korea.</p>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll(".tab-button").forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();  // 링크의 기본 동작 방지
+
+          // 현재 활성화된 탭과 페이지를 비활성화
+          document.querySelectorAll(".tab-button.active").forEach(btn => btn.classList.remove('active'));
+          document.querySelectorAll(".tab-page.active").forEach(page => page.classList.remove('active'));
+
+          // 클릭한 버튼을 활성화
+          button.classList.add('active');
+
+          // 해당하는 페이지를 활성화
+          const href = button.getAttribute("href");
+          document.querySelector(href).classList.add('active');
+        });
+      });
+    </script>
+  </body>
+</html>

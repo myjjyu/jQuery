@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .event-box{
+        border: 5px solid #007;
+        background:  #edff78;
+        color: #009;
+        font-size: 32px;
+        padding: 50px 0;
+        text-align: center;
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="listener" class="event-box">Mouse Here~!!!</div>
+    <script>
+      const eventbox = document.querySelector("#listener");
+    
+      eventbox.addEventListener("mousedown", (e) => (e.currentTarget.innerHTML = "Mouse down"));
+      eventbox.addEventListener("mouseup", (e) => (e.currentTarget.innerHTML = "Mouse up"));
+      eventbox.addEventListener("mouseout", (e) => (e.currentTarget.innerHTML = "Mouse out"));
+      eventbox.addEventListener("mouseover", (e) => (e.currentTarget.innerHTML = "Mouse over"));
+
+    </script>
+  </body>
+</html>

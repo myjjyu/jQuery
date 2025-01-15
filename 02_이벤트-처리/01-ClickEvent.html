@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .event-box{
+        border: 5px solid #007;
+        background:  #d5d5d5;
+        color: #009;
+        font-size: 32px;
+        padding: 50px 0;
+        text-align: center;
+        cursor: pointer;
+        margin-top: 100px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="listener" class="event-box">Mouse Here~!!!</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+    <script>
+      const eventbox = $("#listener");
+      eventbox.on("click", e => {
+        //e.currentTarget.innerHTML = "Click Event";
+        // 제이쿼리로 바꾸면?⬇️
+
+        //$(this).html("Click Event");
+        // 이벤트 리스너의 콜백이 화살표 함수인 경우$(this)로 접근 불가
+        $(e.currentTarget).html("Click Event");
+
+        console.log("문서 기준 : clientX : " + e.clientX + ", clientY : " + e.clientY);
+        console.log("오브젝트 기준  : offsetX : " + e.offsetX + ", offsetY : " + e.offsetY);
+        console.log("모니터 기준 : screenX : " + e.screenX + ", screenY : " + e.screenY);
+      });
+
+      eventbox.on("dblclick" , (e) => {
+        $(e.currentTarget).html("Double Click Event");
+      });
+
+      eventbox.on("mousemove", (e) => {
+        $(e.currentTarget).html("Mouse Move");
+      });
+    </script>
+  </body>
+</html>

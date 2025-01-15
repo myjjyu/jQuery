@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        text-decoration: none;
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="list">
+      <li id="one">one</li>
+      <li id="two" class="blue">
+        two
+        <ul>
+          <li id="a">a</li>
+          <li id="b" class="blue">b</li>
+          <li id="c" class="red">c</li>
+          <li id="d">d</li>
+        </ul>
+      </li>
+      <li id="three">three</li>
+      <li id="four" class="blue">four</li>
+    </ul>
+
+    <button type="button" id="btn1">상위 ul 의 자식들</button>
+    <button type="button" id="btn2">two 의 하위 ul의 자식들</button>
+
+    <script>
+      document.querySelector("#btn1").addEventListener("click", (e) => {
+        console.log(document.querySelector("#list").childNodes);
+
+        const children = document.querySelector("#list").children;
+
+        const childrenArr = Array.from(children);
+        console.log(childrenArr);// 리스트전체가 칠드런임
+
+        childrenArr.forEach((v, i) => { // 배열을 사용하기때문에 무조건 반복문 돌리기!
+          v.style.backgroundColor = "#0066ff";
+        }); // 칠드런 반복문 돌려서 인덱스요소 각각에 백그라운드컬러 주기 
+      });
+
+      document.querySelector("#btn2").addEventListener("click", (e) => {
+        const childrenArr = Array.from( // 유사배열을 진짜배열로 변환
+          document.querySelector("#two > ul").children
+        );
+
+        childrenArr.forEach((v, i) => {
+          v.style.fontWeight = 900;
+        });
+      });
+    </script>
+  </body>
+</html>

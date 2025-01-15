@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #file-input {
+        display: none;
+      }
+      .image-upload label {
+        cursor: pointer;
+      }
+
+      #previw-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #previw-container .preview {
+        display: block;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #555;
+        box-sizing: border-box;
+        margin: 10px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-upload">
+      <label for="file-input">
+        <img src="./img/upload.jpg" />
+      </label>
+
+      <input id="file-input" type="file" multiple />
+    </div>
+
+    <div id="previw-container"></div>
+
+    <script>
+      document.querySelector("#file-input").addEventListener("change", (e) => {
+        const previwContainer = document.querySelector("#previw-container");
+        previwContainer.innerHTML = ""; // 빈문자열로 가지로온다
+
+        const files = e.currentTarget.files;
+        console.log(files);
+
+        Array.from(files).forEach((v, i) => {
+          console.log(v);
+
+          const imgUrl = URL.createObjectURL(v);
+
+          const imgTag = document.createElement("img");
+          imgTag.classList.add("preview");
+          imgTag.setAttribute("src", imgUrl);
+
+          previwContainer.appendChild(imgTag);
+        });
+      });
+    </script>
+  </body>
+</html>

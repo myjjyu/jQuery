@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        text-decoration: none;
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list-group">
+      <li>
+        <a href="#" class="find-parent" data-color="#ff6600">parent</a>
+        <a href="#" class="find-parents" data-color="#ff6600">parents</a>
+      </li>
+      <li>
+        <a href="#" class="find-parent" data-color="#0066ff">parent</a>
+        <a href="#" class="find-parents" data-color="#0066ff">parents</a>
+      </li>
+      <li>
+        <a href="#" class="find-parent" data-color="#00aa00">parent</a>
+        <a href="#" class="find-parents" data-color="#00aa00">parents</a>
+      </li>
+    </ul>
+    <script>
+      // preventDefault**는 이벤트 객체의 메서드로, 이벤트의 기본 동작을 막습니다.
+      //예를 들어, 링크를 클릭했을 때 페이지가 이동하는 기본 동작을 막거나, 폼이 제출될 때 페이지가 새로 고쳐지는 동작을 막을 수 있습니다.
+
+      document.querySelectorAll(".find-parent").forEach((v, i) => {//모든 선택자에서 파인드페런츠를 선택하여 반복문을 돌려라
+        v.addEventListener("click", (e) => { // 클릭이벤트를 걸었을때 파인드페런츠를가~ 
+          e.preventDefault(); // 이벤트기본동작 막기
+          const current = e.currentTarget;  // 파인드페런츠 자기자신을 조회한다
+          const color = current.dataset.color; // 파인트페런츠  html 에서 컬러 지정해준거  속성값을 취득!
+          const parent = current.parentElement; // 파인트 페런츠 부모요소조회
+          console.log(parent); // 출력값 =li 
+          parent.style.backgroundColor = color;// 부모배경색상 출력
+        });
+      });
+
+      // 조사요사 찾기
+      document.querySelectorAll(".find-parents").forEach((v, i) => { // ind-parents 가진 모든 요소를 선택해서 반복문 돌리기
+       //v : 현재 반복중인 요소를 의미/ i: 해당요소으 인덱스
+        v.addEventListener("click", (e) => { 
+          e.preventDefault();
+          const current = e.currentTarget; // 이벤트가 발생한 요소를 current변수에 저장
+          const color = current.dataset.color;
+          const parents = current.closest(".list-group"); // closest : 현재 엘리먼트에서 가장 가까운 조상 반환  // 만약 조상이 없다면? null 반환
+          //list-group 클래스를 가진 가장가까운조상 요소를 찾습니다. 찾은후 parents저장
+          console.log(parents); // a 부모는 li , li의 부모는 ul , 즉 a의 조상은 ul // 출력값 : ul
+          parents.style.backgroundColor = color;
+        });
+      });
+    </script>
+  </body>
+</html>
