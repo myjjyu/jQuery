@@ -38,23 +38,31 @@
       up =<span id="result1">0</span>, dowon =<span id="result2">0</span>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
+      // 이벤트 발생 횟수를 기록하기 위한 변수
       let up = 0,
         dowon = 0;
 
       function updown() {
-        document.querySelector("#result1").innerHTML = up;
-        document.querySelector("#result2").innerHTML = dowon;
+        // document.querySelector("#result1").innerHTML = up;
+        // document.querySelector("#result2").innerHTML = dowon;
+
+        $("#result1").html(up);
+        $("#result2").html(dowon);
       }
 
-      const eventbox = document.querySelector("#listener");
+      // const eventbox = document.querySelector("#listener");
+      const eventbox = $("#listener");
 
-      eventbox.addEventListener("keyup", (e) => {
+      // eventbox.addEventListener("keyup", (e) => {
+      eventbox.on("keyup", (e) => {
         up++;
         updown();
       });
 
-      eventbox.addEventListener("keydown", (e) => {
+      // eventbox.addEventListener("keydown", (e) => {
+      eventbox.on("keydown", (e) => {
         dowon++;
         updown();
       });

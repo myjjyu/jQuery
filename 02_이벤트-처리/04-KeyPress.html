@@ -33,13 +33,15 @@
       placeholder="여기에 입력하세요"
     />
     <div class="event-box console">press = <span id="result1">0</span></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
 
     <script>
+      // 이벤트 발생 횟수를 기록하기 위한 변수
       let press = 0;
-
-      document.querySelector("#listener").addEventListener("keypress", (e) => {
+      // document.querySelector("#listener").addEventListener("keypress", (e) => {
+        $("#listener").on("keypress", (e) => {
         press++;
-        document.querySelector("#result1").innerHTML = press;
+        $("#result1").html(press);
       });
     </script>
   </body>

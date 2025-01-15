@@ -19,13 +19,23 @@
   </head>
   <body>
     <div id="listener" class="event-box">Mouse Here~!!!</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      const eventbox = document.querySelector("#listener");
+      // 바닐라 js 버전
+      // const eventbox = document.querySelector("#listener");
     
-      eventbox.addEventListener("mousedown", (e) => (e.currentTarget.innerHTML = "Mouse down"));
-      eventbox.addEventListener("mouseup", (e) => (e.currentTarget.innerHTML = "Mouse up"));
-      eventbox.addEventListener("mouseout", (e) => (e.currentTarget.innerHTML = "Mouse out"));
-      eventbox.addEventListener("mouseover", (e) => (e.currentTarget.innerHTML = "Mouse over"));
+      // eventbox.addEventListener("mousedown", (e) => (e.currentTarget.innerHTML = "Mouse down"));
+      // eventbox.addEventListener("mouseup", (e) => (e.currentTarget.innerHTML = "Mouse up"));
+      // eventbox.addEventListener("mouseout", (e) => (e.currentTarget.innerHTML = "Mouse out"));
+      // eventbox.addEventListener("mouseover", (e) => (e.currentTarget.innerHTML = "Mouse over"));
+
+      // jQuery 버전
+      const eventbox = $("#listener");
+    
+      eventbox.on("mousedown", (e) => $(e.currentTarget).html("Mouse down"));
+      eventbox.on("mouseup", (e) => $(e.currentTarget).html("Mouse up"));
+      eventbox.on("mouseout", (e) => $(e.currentTarget).html("Mouse out"));
+      eventbox.on("mouseover", (e) => $(e.currentTarget).html ("Mouse over"));
 
     </script>
   </body>

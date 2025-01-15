@@ -37,22 +37,35 @@
       <p>enter press = <span id="result2">none</span></p>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      const listener = document.querySelector("#listener");
-      const result1 = document.querySelector("#result1");
-      const result2 = document.querySelector("#result2");
+      // 바닐라 js 버전
+      // const listener = document.querySelector("#listener");
+      // const result1 = document.querySelector("#result1");
+      // const result2 = document.querySelector("#result2");
 
-      listener.addEventListener("keyup", (e) => {
+      //jQuery 버전
+      const listener = $("#listener");
+      const result1 = $("#result1");
+      const result2 = $("#result2");
+
+      // listener.addEventListener("keyup", (e) => {
+      listener.on("keyup", (e) => {
+        // 이번에 눌러진 키에 대한 keycode값 얻기
         const keycode = e.keyCode;
 
-        result1.innerHTML = keycode;
+        // result1.innerHTML = keycode;
+        result1.html(keycode);
 
         if (keycode === 13) {
-          result2.innerHTML = "엔터키가 눌러졌습니다";
+          // result2.innerHTML = "엔터키가 눌러졌습니다";
+          result2.html("엔터키가 눌러졌습니다");
         } else if (keycode === 8) {
-          result2.innerHTML = "백스페이스가 눌러졌습니다";
+          // result2.innerHTML = "백스페이스가 눌러졌습니다";
+          result2.html("백스페이스가 눌러졌습니다");
         } else {
-          result2.innerHTML = "none";
+          // result2.innerHTML = "none";
+          result2.html("none");
         }
       });
     </script>
