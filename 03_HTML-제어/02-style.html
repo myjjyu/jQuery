@@ -18,10 +18,13 @@
         padding: 25px;
         text-align: left;
       }
+
+      /* .hidden {
+        display: none;
+      } */
     </style>
   </head>
   <body>
-    <div id="box" class="box1"><h1>테스트 영역 입니다</h1></div>
     <input type="button" id="btn1" value="(폰트)" />
     <input type="button" id="btn2" value="(폰트)" />
     <input type="button" id="btn3" value="(폰트)" />
@@ -32,64 +35,63 @@
     <input type="button" id="btn8" value="width = auto" />
     <input type="button" id="btn9" value="box1 클래스 적용" />
     <input type="button" id="btn10" value="box2 클래스 적용" />
+    <input type="button" id="btn11" value="show" />
+    <input type="button" id="btn12" value="hide" />
+    <input type="button" id="btn13" value="toggle" />
 
+    <div id="box" class="box1"><h1>테스트 영역 입니다</h1></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelector("#btn1").addEventListener("click", function (e) {
-        const box = document.getElementById("box");
-        box.style.color = "#ff0000";
+      $("#btn1").on("click", function (e) {
+        // id가 box인 요소를 가져와서
+        const box = $("#box");
+        // 글자 색상을 파라미터로 전달된 값으로 설정함
+        box.css("color", "#ff0000");
       });
 
-      document
-        .querySelector("#btn2")
-        .addEventListener(
-          "click",
-          (e) => (document.getElementById("box").style.color = "#00ff00")
-        );
-      document
-        .querySelector("#btn3")
-        .addEventListener(
-          "click",
-          (e) => (document.getElementById("box").style.color = "#0000ff")
-        );
-      document
-        .querySelector("#btn4")
-        .addEventListener(
-          "click",
-          (e) => (document.getElementById("box").style.backgroundColor = "red")
-        );
-      document
-        .querySelector("#btn5")
-        .addEventListener(
-          "click",
-          (e) =>
-            (document.getElementById("box").style.backgroundColor = "green")
-        );
-      document
-        .querySelector("#btn6")
-        .addEventListener(
-          "click",
-          (e) => (document.getElementById("box").style.backgroundColor = "blue")
-        );
-      document.querySelector("#btn7").addEventListener("click", (e) => {
-        document.getElementById("box").style.width = "50%";
+      $("#btn2").on("click", (e) => $("#box").css("color", "#00ff00"));
+      $("#btn3").on("click", (e) => $("#box").css("color", "#0000ff"));
+      $("#btn4").on("click", (e) => $("#box").css("background-color", "red"));
+      $("#btn5").on("click", (e) => $("#box").css("background-color", "green"));
+      $("#btn6").on("click", (e) => $("#box").css("background-color", "blue"));
+      $("#btn7").on("click", (e) => $("#box").css("width", "50%"));
+      $("#btn8").on("click", (e) => $("#box").css("width", "auto"));
+      $("#btn9").on("click", (e) => {
+        const box = $("#box");
+        box.addClass("box1");
+        box.removeClass("box2");
       });
-      document
-        .querySelector("#btn8")
-        .addEventListener(
-          "click",
-          (e) => (document.getElementById("box").style.width = "auto")
-        );
-
-      document.querySelector("#btn9").addEventListener("click", (e) => {
-        const box = document.getElementById("box");
-        box.classList.add("box1");
-        box.classList.remove("box2");
+      $("#btn10").on("click", (e) => {
+        const box = $("#box");
+        box.addClass("box2");
+        box.removeClass("box1");
       });
 
-      document.querySelector("#btn10").addEventListener("click", (e) => {
-        const box = document.getElementById("box");
-        box.classList.add("box2");
-        box.classList.remove("box1");
+      $("#btn11").on("click", (e) => {
+        const box = $("#box");
+
+        //if (box.hasClass("hidden")) {
+        //  box.removeClass("hidden");
+        //} else {
+        //  box.addClass("hidden");
+
+        // box.toggleClass("hidden");
+        // box.show();
+        // box.fadeIn();
+        box.slideDown(300);
+      });
+
+      $("#btn12").on("click", (e) => {
+        //$("#box").hide();
+        //$("#box").fadeOut();
+        $("#box").slideUp(300);
+      });
+
+      $("#btn13").on("click", (e) => {
+        //$("#box").toggle();
+        //$("#box").fadeToggle();
+        $("#box").slideToggle(300);
       });
     </script>
   </body>
