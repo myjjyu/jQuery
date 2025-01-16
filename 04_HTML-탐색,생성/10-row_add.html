@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      width: 800px;
+      border: 1px solid #d5d5d5;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #d5d5d5;
+      width: 20%;
+      text-align: center;
+    }
+
+    th {
+      background-color: #eee;
+      padding: 5px 0;
+    }
+
+    .input {
+      padding: 5px 0;
+      text-align: center;
+      border: 0;
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>학생이름</th>
+        <th>HTML</th>
+        <th>CSS</th>
+        <th>Javascript</th>
+        <th>+/-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="item">
+        <td><input type="text" class="input"></td>
+        <td><input type="text" class="input"></td>
+        <td><input type="text" class="input"></td>
+        <td><input type="text" class="input"></td>
+        <td>
+          <button type="button" class="add">+</button>
+          <button type="button" class="remove">-</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+  <script>
+      // `on` 함수는 앞으로 추가될 요소와
+      // 처음주터 존재하고 있는 요소 모두에게 이벤트를 적용한다
+    $(document).on('click', '.add', (e) => {
+      // 클릭된 버튼 상위요소인 `.item`을 찾아서 저장한다
+      const item = $(e.currentTarget).parents('.item');
+      // 찾은 요소를 복제한다
+      const clone = item.clone();
+      // 찾은 요소 내의 모든 입력 태그의 값을 초기화 한다
+      clone.find('input').val('');
+      // 복제된 요소를 item 다음에 삽입한다
+      clone.insertAfter(item);
+    });
+
+    $(document).on('click', '.remove', (e) => {
+      // 클릭된 버튼의 상위요소인 `.item`을 찾아서 삭제한다
+      $(e.currentTarget).parents('.item').remove();
+    });
+  </script>
+</body>
+</html>
