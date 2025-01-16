@@ -22,14 +22,24 @@
 
     <button id="btn1" type="button">자손요소</button>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelector("#btn1").addEventListener("click", (e) => {
-        const post = document.querySelector("#post1");
-
-        post.querySelectorAll(".thumb").forEach((v, i) => {
-          v.style.color = "#06f";
-          v.style.fontWeight = 'bold';
+      $("#btn1").on("click", (e) => {
+        
+        // .thumb 클래스를 가진 span 요소들을 찾아서 스타일을 변경⬇️
+      $("#post1").find(".thumb").each((i, v) => {
+          $(v).css({
+            color: "#070",
+            fontWeight: "bold",
+          });
         });
+
+        // 3번째 요소만 스타일 변경⬇️
+        // $("#post1").find('.thumb').eq(2).css({
+        //   color: "#06f",
+        //   fontWeight: "bold",
+        // });
+
       });
     </script>
   </body>

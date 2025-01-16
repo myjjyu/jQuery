@@ -30,29 +30,18 @@
     <button type="button" id="btn1">상위 ul 의 자식들</button>
     <button type="button" id="btn2">two 의 하위 ul의 자식들</button>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelector("#btn1").addEventListener("click", (e) => {
-        console.log(document.querySelector("#list").childNodes);
-
-        const children = document.querySelector("#list").children;
-
-        const childrenArr = Array.from(children);
-        console.log(childrenArr);// 리스트전체가 칠드런임
-
-        childrenArr.forEach((v, i) => { // 배열을 사용하기때문에 무조건 반복문 돌리기!
-          v.style.backgroundColor = "#0066ff";
-        }); // 칠드런 반복문 돌려서 인덱스요소 각각에 백그라운드컬러 주기 
+      $("#btn1").on("click", (e) => {
+        // #list의 자식요소들 얻기
+        const children = $("#list").children();
+        children.each((i, v) => { $(v).css("background-color", "#0066ff");});
+        children.eq(2).css('background-color', '#ff6600');
       });
 
-      document.querySelector("#btn2").addEventListener("click", (e) => {
-        const childrenArr = Array.from( // 유사배열을 진짜배열로 변환
-          document.querySelector("#two > ul").children
-        );
-
-        childrenArr.forEach((v, i) => {
-          v.style.fontWeight = 900;
+      $("#btn2").on("click", (e) => {
+          $("#two > ul").children().each((i, v) => $(v).css("font-weight", "900"));
         });
-      });
     </script>
   </body>
 </html>
