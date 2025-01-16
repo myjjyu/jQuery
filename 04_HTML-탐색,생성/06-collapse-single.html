@@ -29,11 +29,11 @@
   .content{
     /* border: 5px solid red; */
     padding: 0 18px;
-    max-height: 0;
+    /* max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.2s ease-out; */
+    display: none;
     background-color: #f1f1f1;
-
   }
 </style>
 
@@ -138,21 +138,12 @@
       </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelectorAll('.collapsible-title').forEach((v,i)=>{
-        v.addEventListener('click',(e)=>{
-          const current = e.currentTarget;
-          current.classList.toggle('active');
-
-          const parent = current.closest('.Collapse');
-          const content = parent.querySelector('.content');
-
-          if(content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + 'px';
-          }
-        });
+      $('.collapsible-title').on('click',(e)=>{
+          const current = $(e.currentTarget);
+          current.toggleClass('active');
+          current.parents('.Collapse').find('.content').slideToggle(200);
       });
     </script>
   </body>

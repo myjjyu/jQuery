@@ -27,9 +27,10 @@
       .content {
         /* border: 5px solid red; */
         padding: 0 18px;
-        max-height: 0;
+        /* max-height: 0;
         overflow: hidden;
-        transition: max-height 0.2s ease-out;
+        transition: max-height 0.2s ease-out; */
+        display: none;
         background-color: #f1f1f1;
       }
     </style>
@@ -134,31 +135,23 @@
       </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelectorAll(".collapsible-title").forEach((v, i) => {
-        v.addEventListener("click", (e) => {
-          document.querySelectorAll(".content").forEach((w, j) => {
-            w.style.maxHeight = null;
-          });
-          const current = e.currentTarget;
-          current.classList.toggle("active");
+      $(".collapsible-title").on("click", (e) => {
+        // 클릭된 제목 스스로 active 클래스 on/off
+        const current = $(e.currentTarget);
+        current.toggleClass("active");
 
-          document.querySelectorAll(".collapsible-title").forEach((w, j) => {
-            if (w !== current) {
-              w.classList.remove("active");
-            }
-          });
+        // 클릭된 제목의, 부모의, .content 클래스를 갖는 자손 요소
+        const content = current.parents('.collapse').find('.content');
+        // slide on/off
+        content.slideToggle(200);
 
-          const parent = current.closest(".collapse");
+        // 전체 제목중에서 클릭된 스스로를 제외한 나머지에게 active 클래스를 제거
+        $(".collapsible-title").not(current).removeClass("active");
 
-          const content = parent.querySelector(".content");
-
-          if (!current.classList.contains("active")) {
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-        });
+        // 전체 내용 중에서 이번에 작동한 항목을 제외한 나머지에게 slideUp
+        $(".content").not(content).slideUp(200);
       });
     </script>
   </body>

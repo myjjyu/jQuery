@@ -38,41 +38,53 @@
     <input type="text" id="comment" />
     <button type="button" id="appendChild">appendChild</button>
     <button type="button" id="insertBefore1">insertBefore1</button>
-    <button type="button" id="insertBefore2">insertBefore2</button>
+    <!-- <button type="button" id="insertBefore2">insertBefore2</button> -->
+     <button type="button" id="insertAfter">insertAfter(jQuery전용)</button>
     <hr />
+    <!-- 동적으로 js가 생성된 html요소가 추가될 객체  -->
     <ul id="list"></ul>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      const list = document.querySelector("#list");
+      // 동적으로 js가 생성된 html요소가 추가될 객체 
+      const list = $("#list");
 
-      const comment = document.querySelector("#comment");
+      // 사용자가 입력할 input태그
+      const comment = $("#comment");
 
-      const getItem = (clsName) => {
-        const li = document.createElement("li");
-        li.classList.add("item", clsName);
-        li.innerHTML = comment.value;
+      //document에 이벤트를 적용할 경우 앞으로 생성될 요소에 대한 이벤트를 미리 정의하는 형태
+      $(document).on("click", ".item", (e) => {
+        $(e.currentTarget).remove();
+      });
 
-        li.addEventListener("click", (e) => {
-          e.currentTarget.remove();
+      // 동적으로 <li>태그 Element 객체를 생성하여 리턴하는 함수
+        const getItem = (clsName) => {
+          // js에게 li태그를 코딩시킴
+          const li = $("<li>");
+          // css 클래스 추가시 addClass()함수에게 공백으로 구분하여 여러개 추가 기능
+          li.addClass(`item ${clsName}`);
+          // 사용자가 입력한 내용을 li태그에 표시함
+          li.html(comment.val());
+
+          return li;
+        };
+
+        /** 자식 요소 추가 버튼 클릭 이벤트 */
+        $("#appendChild").on("click", (e) => {
+          const li = getItem("blue");
+
+          // ul태그에 js가 코딩한 li를 자식요소로 추가함  --> 기존 항목을 유지하고 맨 뒤에 추가함
+          // list.append(li);
+          li.appendTo(list); 
+        }); 
+
+        $('#insertBefore1').on("click", (e) => {
+          getItem("orange").insertBefore($('.item:first-child'));
         });
-        return li;
-      };
 
-      document.querySelector("#appendChild").addEventListener("click", (e) => {
-        const li = getItem("blue");
-        list.appendChild(li);
-      });
-
-      document.querySelector("#insertBefore1").addEventListener("click", (e) => {
-        list.insertBefore(getItem("orange"), null);
-      });
-
-      document.querySelector("#insertBefore2").addEventListener("click", (e) => {
-        list.insertBefore(
-          getItem("pink"),
-          document.querySelector("li:first-child")
-        );
-      });
+        $('#insertAfter').on("click", (e) => {
+          getItem("pink").insertAfter($('.item:last-child'));
+        });
     </script>
   </body>
 </html>
