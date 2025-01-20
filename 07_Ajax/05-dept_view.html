@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #loading {
+        width: 100px;
+        height: 100px;
+        background: url(./img/loading.gif) no-repeat center/cover;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999999;
+        display: none;
+      }
+      #loading.active {
+        display: block;
+      }
+      dt {
+        font-weight: bold;
+        margin: 10px 0px;
+        font-size: 20px;
+      }
+
+      dt:before {
+        content: "⭐️";
+        padding-right: 5px;
+      }
+
+      dd {
+        font-weight: normal;
+        margin-bottom: 30px;
+        border-left: 5px solid #ed7b7b;
+        padding-left: 15px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading"></div>
+    <h1>Async Await Axios</h1>
+
+    <a href="#" class="mylink" data-deptno="101">컴퓨터공학과</a>
+    <a href="#" class="mylink" data-deptno="102">멀티미디어학과</a>
+    <a href="#" class="mylink" data-deptno="201">전자공학과</a>
+    <a href="#" class="mylink" data-deptno="202">기계공학과</a>
+
+    <dl id="container">
+
+      <script id="list-item-tmpl" type="text/x-handlebars-template">
+      <dt>학과번호</dt>
+      <dd class="id"> {{item.id}} </dd>
+      <dt>학과명</dt>
+      <dd class="dname"> {{item.dname}} </dd>
+      <dt>학과위치</dt>
+      <dd class="loc"> {{item.loc}} </dd>
+    </dl>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="AjaxHelper.js"></script>
+
+    <script>
+     // 링크객체
+     $(".mylink").on("click", (e) =>{
+    e.preventDefault();
+
+    // 링크에 숨겨진 data-deptno 속성값을 가져온다.
+    const deptno = $(e.currentTarget).data("deptno");
+
+    $.get(`http://localhost:8080/department/${deptno}`, (data) =>{
+      const template = Handlebars.compile($("#list-item-tmpl").html());
+      const content = template(data);
+      $("#container").html(content);
+    });
+  });
+    </script>
+  </body>
+</html>

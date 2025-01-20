@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .container{
+        border-bottom: 1px dotted #ccc;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        display: flex;
+      }
+
+      .container a{
+        display: block;
+        margin-right: 30px;
+      }
+
+      .text-success{
+        color: rgb(142, 186, 172);
+        font-size: 24px;
+      }
+
+      .text-primary{
+        color: rgb(197, 123, 32);
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple Get</h1>
+    <div class="container">
+      <a href="#" id="btn1">$.ajax</a>
+    </div>
+    <div id="result"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+    <script>
+    $("#btn1").on("click", e =>{
+      e.preventDefault();
+
+      $.ajax({
+        /** ajax 기본 옵션*/
+        cache: false, // 캐시 사용 금지처리
+        url: "http://localhost:8080/hello", // 읽어들일 파일의 경로
+        method: "GET", // 통신방법(get(기본값), post)
+        data: {}, // 접속대상에게 전달할 파라미터
+        dataType: "html", // 읽어올 내용 형식(html, xml, json 기본값 = json)
+        timeout: 3000, // 제한시간 설정(30초)
+
+        // 통신 시작전 실행할 기능 (ex : 로딩바 표시)
+        beforeSend: () => {
+          // 현재 통신중인 대상 페이지를 로그로 출력함
+          console.log(">> ajax 통신 시작");
+        },
+
+        // 통신 성공시 호출될 함수 (파라미터는 읽어온 내용)
+        success: (req) => {
+          console.log(">> 성공!!!!" + req);
+          // 준비된 요소에게 읽어온 내용을 출력
+          $("#result").append(req);
+        },
+
+        // 통신 실패시 호출될 함수 (파라미터는 에러내용)
+        error: (error) => {
+          // 404 : 페이지를 찾을 수 없음
+          // 500 : 서버 내부 오류
+          // 200, 0 : 내용의 형식 에러(json, xml)
+          console.log(">> 실패!!!!" + error.status);
+        },
+
+        // 성공, 실패에 상관 없이 맨 마지막에 무조건 호출됨 EX) 로딩바 닫기
+        complete: () => {
+          console.log(">> ajax 통신 종료");
+        }
+    });
+  });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .text-success {
+        color: rgb(142, 186, 172);
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple Json</h1>
+    <a href="#" id="btn1">$.ajax</a>
+    <a href="#" id="btn2">$.get</a>
+    <div id="result"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
+    <script src="AjaxHelper.js"></script>
+    <script>
+     $("#btn1").on("click", e =>{
+      e.preventDefault();
+
+      $.ajax({
+        /** ajax 기본 옵션*/
+        url: "http://localhost:8080/hello", // 읽어들일 파일의 경로
+
+        // 통신 성공시 호출될 함수 (파라미터는 읽어온 내용)
+        success: (req) => {
+          console.log(req);
+         const h1 = $("<h1>");
+          h1.addClass("text-success").html(`[$.ajax] ${req.item.msg}`);
+          $("#result").append(h1);
+        }
+     });
+    });
+
+    $("#btn2").on("click", e =>{
+      e.preventDefault();
+
+      $.get("http://localhost:8080/hello", {a: 100, b:200}, (req) => {
+        const h1 = $("<h1>");
+        h1.addClass("text-success").html(`[$.get] ${req.item.msg}`);
+        $("#result").append(h1);
+      });
+    });
+    </script>
+  </body>
+</html>
