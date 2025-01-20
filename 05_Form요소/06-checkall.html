@@ -26,16 +26,18 @@
     <label><input type="checkbox" class="food" value="b" />b</label>
     <label><input type="checkbox" class="food" value="c" />c</label>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelectorAll("input[data-checked]").forEach((v, i) => {
-        v.addEventListener("change", (e) => {
-          const current = e.currentTarget;
-          const targetSelector = current.dataset.checked;
-          console.log(targetSelector);
-          document.querySelectorAll(targetSelector).forEach((v2, i2) => {
-            v2.checked = current.checked;
-          });
-        });
+     /** 단일 처리일 경우*/
+      // $("#all_check").on("change", e => {
+      // $(".hobby").prop("checked", $(e.currentTarget).prop("checked"));
+      //});
+
+      /** data-checked 속성을 개발자가 정의하려 자동화 할 경우 */
+      $("*[data-checked]").on("change", e => {
+       const current = $(e.currentTarget);
+       const checked = current.data("checked");
+        $(checked).prop("checked", $(e.currentTarget).prop("checked"));
       });
     </script>
   </body>

@@ -16,12 +16,24 @@
     /></label>
     <input type="text" name="input" id="input" disabled />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document
-        .querySelector("#input_enable")
-        .addEventListener("change", (e) => {
-          document.querySelector("#input").disabled = !e.currentTarget.checked;
-        });
+     /** input_enable 의 선택 상태가 변경된 경우*/
+      $("#input_enable").on("change", (e) => {
+        // 체크 박스 스스로의 선택 상태를 가져온다
+        const now = $(e.currentTarget).prop("checked");
+
+        // 대상 입력 요소 
+        const target = $("#input");
+
+        //가져온 값을 역으로 변경하여 다시 적용한다
+        target.prop("disabled", !now);
+
+        // 입력 가능 상태라면 포커스 지정 
+        if (now) {
+          target.focus();
+        }
+      });
     </script>
   </body>
 </html>

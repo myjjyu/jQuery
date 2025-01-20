@@ -22,37 +22,33 @@
 
       <div id="result"></div>
     </form>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script type="text/javascript">
-      const myform = document.querySelector("#myform");
+      $('#myform').on("submint", e => {
+        e.preventDefault();
+        const username = $('#username');
+        const userpass = $('#userpass');
 
-      myform.addEventListener("submit", (e) => {
-        e.preventDefault(); // 입력하기도전에 백엔드에 전송되기때문에 처음에는 이벤트반응이 일어나면 안된다. 다~ 작성후 마지막에 강제전송시켜줘야함
-
-        const username = document.querySelector("#username");
-        const userpass = document.querySelector("#userpass");
-
-        if (!username.value) {
-          alert("사용자 이름을 입력하세요");
-          username.focus;
+        if(!username.val()){
+          alert('사용자 이름을 입력하세요');
+          username.focus();
           return;
         }
 
-        if (!userpass.value) {
-          alert("비밀번호를 입력하세요");
-          userpass.focus;
+        if(!userpass.val()){
+          alert('비밀번호를 입력하세요');
+          userpass.focus();
           return;
         }
 
-        document.querySelector("#result").innerHTML =
-          "사용자 이름 :" +
-          username.value +
-          "<br/>비밀번호 : " +
-          userpass.value;
+        // 모든 if문을 통과 했다면 입력 내용을 #result에 출력
+        $('#result').html('사용자 이름 : ' + username.val() + '<br/>비밀번호 : ' + userpass.val());
 
-        //중단시켜놓은 form의 원래 기능을 무시하고 강제 전송
-        //e.currentTarget.submit();
+        // 중단시켜 놓은 form의 원래 기능을 무시하고 강제 전송
+        //(e.currentTarget).off("submit").submit();
       });
+
+     
     </script>
   </body>
 </html>

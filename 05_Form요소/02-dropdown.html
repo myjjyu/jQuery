@@ -20,19 +20,23 @@
       <div id="result"></div>
     </form>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelector("#myform").addEventListener("submit", (e) => {
+      $("#myform").on("submit", (e) => {
         e.preventDefault();
 
-        const dropdown = document.querySelector("#subject");
-        const choose = dropdown.selectedIndex;
+        const subject =$("#subject");
 
-        if (choose == 0) {
-          alert("선택된 항목이 없습니다");
-          return;
+        if(!subject.val()){
+          alert('과목을 선택하세요');
+          subject.focus();
+          return false;
         }
-        const value = dropdown[choose].value;
-        document.querySelector("#result").innerHTML = value;
+
+        const subject_index = $("#subject > option:selected").index();
+        
+        $('#result').append('<div>선택한 과목 : ' + subject.val() + '</div>');
+        $('#result').append('<div>선택한 과목의 인덱스 : ' + subject_index + '</div>');
       });
     </script>
   </body>

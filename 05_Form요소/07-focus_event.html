@@ -8,30 +8,36 @@
   <body>
     <form id="myform">
       <h3>주민번호를 입력하세요</h3>
-      <input type="text" name="jumjn1" id="jumjn1" class="jumjn1" />
+      <input type="text" name="jumin1" id="jumin1" class="jumin" />
       -
-      <input type="password" name="jumjn2" id="jumjn2" class="jumjn2" />
+      <input type="password" name="jumin2" id="jumin2" class="jumin" />
     </form>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelectorAll(".jumjn1").forEach((v, i) => {
-        v.addEventListener("focus", (e) => {  // 포커스인
-          e.currentTarget.style.backgroundColor = "#06f";
-          e.currentTarget.style.color = "#fff";
-        });
+      const jumin = $(".jumin");
 
-        v.addEventListener("blur", (e) => { // 포커스아웃
-          e.currentTarget.style.backgroundColor = "#fff";
-          e.currentTarget.style.color = "#000";
+      jumin.on("focus", (e) => {
+        $(e.currentTarget).css({
+          "background-color": "#06f",
+          color: "#fff",
         });
       });
 
-      document.querySelector("#jumjn1").addEventListener("keyup", (e) => {
-        const value = e.currentTarget.value;
+      jumin.on("blur", (e) => {
+        $(e.currentTarget).css({
+          "background-color": "#fff",
+          color: "#000",
+        });
+      });
 
-        if (value.length >= 6) {
-          e.currentTarget.value = value.substring(0, 6);
-          document.querySelector("#jumjn2").focus();
+      $('#jumin1').on('keyup', (e) => {
+       const current = $(e.currentTarget);
+       const value = current.val();
+
+       if(value.length >= 6) {
+         current.val(value.substring(0, 6));
+          $('#jumin2').focus();
         }
       });
     </script>

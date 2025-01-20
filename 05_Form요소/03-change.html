@@ -22,18 +22,15 @@
     <input type="text" id="keycheck" />
     <p id="keycopy"></p>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelector("#site").addEventListener("change", (e) => {
-        const choose = e.currentTarget.selectedIndex;
-        const value = e.currentTarget[choose].value;
-
-        if (value) {
+      $("#site").on("change", (e) => {
+        const value = $(e.currentTarget).val();
+       
+        if(value){
+          // 파라미터로 전달된 url을 새로운 탭으로 여는 함수
           window.open(value);
         }
-      });
-
-      document.querySelector("#keycheck").addEventListener("keyup", (e) => {
-        document.querySelector("#keycopy").innerHTML = e.currentTarget.value;
       });
     </script>
   </body>

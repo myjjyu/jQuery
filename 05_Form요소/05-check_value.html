@@ -16,24 +16,27 @@
 
     <hr />
 
-    <p id="conssole"></p>
+    <p id="console"></p>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      const checkbox = document.querySelectorAll(".hobby");
-      checkbox.forEach((v, i) => {
-        v.addEventListener("change", (e) => {
-          const div = document.querySelector("#conssole");
-          div.innerHTML = e.currentTarget.value;
-          div.innerHTML += e.currentTarget.checked ? "체크됨" : "체크 해제됨";
-        });
+      $(".hobby").on('change', e =>{
+        const current = $(e.currentTarget)
+        const div = $("#console");
+        div.html(current.val());
+        div.html(div.html() + (current.prop("checked")? "선택됨" : "선택해제됨"));
       });
 
-      document.querySelector("#btn").addEventListener("click", (e) => {
-        const checkedItem = Array.from(checkbox).filter((v, i) => v.checked);
-        console.log(checkedItem);
+      // 버튼이 눌러진 경우의 처리
+      $("#btn").on("click", e => {
+        const checked = $(".hobby:checked");
 
-        const checkedValue = checkedItem.map((v, i) => v.value);
-        document.querySelector("#console").innerHTML = checkedValue;
+        const choose = [];
+        checked.each((index, item) => {
+          choose.push($(item).val());
+        });
+
+        console.log(choose);
       });
     </script>
   </body>

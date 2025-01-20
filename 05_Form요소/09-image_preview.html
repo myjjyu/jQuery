@@ -12,12 +12,12 @@
         cursor: pointer;
       }
 
-      #previw-container {
+      #preview-container {
         display: flex;
         flex-wrap: wrap;
       }
 
-      #previw-container .preview {
+      #preview-container .preview {
         display: block;
         width: 100px;
         height: 100px;
@@ -37,28 +37,37 @@
       <input id="file-input" type="file" multiple />
     </div>
 
-    <div id="previw-container"></div>
+    <div id="preview-container"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js"></script>
     <script>
-      document.querySelector("#file-input").addEventListener("change", (e) => {
-        const previwContainer = document.querySelector("#previw-container");
-        previwContainer.innerHTML = ""; // 빈문자열로 가지로온다
+     // file 요소에 대한 change 이벤트
+     $("#file-input").on("change", (e) => {
+       // 미리보기를 표시할 컨테이너 객체 
+     const previewContainer = $("#preview-container");
 
-        const files = e.currentTarget.files;
-        console.log(files);
+     // 컨테이너의 내부를 모두 지운다
+      previewContainer.empty();
 
-        Array.from(files).forEach((v, i) => {
-          console.log(v);
+      // 선택된 파일의 파일리스트(배열이 아님)
+     const files = $(e.currentTarget).prop("files");
 
-          const imgUrl = URL.createObjectURL(v);
+     // 선택된 파일의 수 만큰 반복
+     Array.from(files).forEach((file) => {
+       // i번째 파일을 가져온다 
+       const imgUrl = URL.createObjectURL(file);
+       console.log(imgUrl);
 
-          const imgTag = document.createElement("img");
-          imgTag.classList.add("preview");
-          imgTag.setAttribute("src", imgUrl);
+       // 이미지를 표시할 img 태그를 생성
+       // createElement 는 body 태그 안에 코딩되어 있지 않은 새로운 html 태그를 생성
+       // ---> 화면상에 보이지 않음
+       const imgTag = $("<img>").addClass("preview").attr("src", imgUrl);
 
-          previwContainer.appendChild(imgTag);
-        });
+       //js로 생성한 새로운 html 태그를 화면상에 표시하기 위해
+       // 기존의 Element객체 안에 자식요소로 추가(append)
+        previewContainer.append(imgTag);
       });
+    });
     </script>
   </body>
 </html>
